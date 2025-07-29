@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
-:root {
+* {
+  overflow: hidden;
+}
+
+:root, html {
   --background: #ffffff;
   --foreground: #171717;
+  font-size: clamp(6px, 1vw, 18px);
 }
 
 @theme inline {
@@ -12,10 +17,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
+
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+
   }
 }
 
@@ -23,4 +31,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.page {
+background: #1B1E2E;
+background: linear-gradient(145deg, rgba(27, 30, 46, 1) 0%, rgba(27, 30, 46, 1) 0%, rgba(27, 30, 46, 1) 0%, rgba(75, 90, 179, 1) 64%, rgba(22, 66, 120, 1) 100%);
 }
