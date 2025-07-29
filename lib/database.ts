@@ -6,15 +6,13 @@ import { createClient } from "@supabase/supabase-js";
 
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
-const supabase = createClient(process.env.SUPABASE_URL!,process.env.API_KEY!)
-const listOfImages = await supabase.storage.listBuckets()
+const supabase = createClient(process.env.SUPABASE_URL!,process.env.SUPABASE_SERVICE_ROLE_KEY!)
+
 export default async function serveImage(bucketName:string, filePath: string) {
 
-    
+    const { data, error } = await supabase.storage.from(bucketName)?.createSignedUrl(filePath, 60);
 
-    const { data, error } = await supabase.storage.from(bucketName).createSignedUrl(filePath, 60);
-    
-    throw listOfImages
+    if(error) throw error;
 
     return data?.signedUrl;
 }

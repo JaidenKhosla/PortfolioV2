@@ -17,7 +17,7 @@ export default async function Projects() {
             
             {
                 projects.map(async (project)=>{
-                    const imageUrl =  await serveImage("portfolio-images", `${project.title}`) 
+                    const imageUrl =  await serveImage("portfolio-images", `${project.title}.jpg`) 
                     return <Project key={project.title} title={project.title} description={project.description} link={project.link} tags={project.tags.tags} image={imageUrl!}/>
             })
             }
