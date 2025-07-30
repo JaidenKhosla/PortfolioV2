@@ -5,6 +5,7 @@ import { DiJavascript, DiJava, DiPython, DiCss3} from "react-icons/di";
 import { SiTailwindcss, SiTypescript, SiHtml5, SiReact, SiNextdotjs, SiGodotengine, SiGithub } from "react-icons/si";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import ImageSkeleton from "../image/ImageSkeleton";
 
 const tagsToIcon: { [ tag: string ] : [IconType, string]} = {
     "JS" : [DiJavascript, "bg-yellow-400"],
@@ -32,9 +33,12 @@ interface ProjectCardProps {
 export default function ProjectCard({
     title, description, image, link, tags
 } : ProjectCardProps) {
-    return <div className="w-100 select-none transition hover:scale-103 cursor-pointer group" onClick={()=>window.open(link, "_blank")}>
-        <Image width={1600} height={900} alt={`An Image of ${title}`} src={image} draggable={false} className="w-full h-30 rounded-t-4xl object-cover transition group-hover:grayscale-90"/>
-        <div className="text-white bg-gray-700/60 pl-6 pt-3 pb-4 rounded-b-4xl">
+
+    console.log(image)
+
+    return <div className="w-100 select-none transition hover:scale-103 cursor-pointer group h-max" onClick={()=>window.open(link, "_blank")}>
+        <ImageSkeleton width={1600} height={900} alt={`An Image of ${title}`} src={image} draggable={false} className="w-full h-30 rounded-t-4xl object-cover transition group-hover:grayscale-90"/>
+        <div className="text-white bg-gray-700/60 pl-6 pt-3 pb-4 rounded-b-4xl h-64">
             <p className="font-bold text-4xl py-1.5">{title}</p>
             <div className="flex flex-wrap gap-1 py-2">{tags.map((tag)=><Tag title={tag} key={tag}/>)}</div>
             <p className="font-light text-base">{description}</p>

@@ -21,7 +21,9 @@ export default function RootLayout({
         className={`${workSans.className} antialiased flex self-center`}
         >
         <Navbar/>
-        {children}
+        <div className="page">
+          {children}
+        </div>
       </body>
     </html>
   );

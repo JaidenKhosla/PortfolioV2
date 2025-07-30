@@ -1,12 +1,14 @@
 import Image from "next/image"
 import MiniLinkContainer from "@/ui/minilink/MiniLinkContainer"
+import ImageSkeleton from "@/ui/image/ImageSkeleton"
 import Calendar from "@/ui/githubStats/Calendar"
 
 export default function Home(){
-  return <div className="page">
-    <div className="self-center pt-5 flex items-center gap-12">
+  return (
+    <>
+    <div className="self-center flex items-center gap-12">
       <div className="flex flex-col items-center gap-y-6">
-        <Image src="/images/JaidenKhosla.png" width={1932} height={3013} alt="Jaiden Khosla"  draggable={false} className=" object-cover w-75 rounded-full h-75 mt-10"/>
+        <ImageSkeleton src="/images/JaidenKhosla.png" width={1932} height={3013} alt="Jaiden Khosla"  draggable={false} className=" object-cover w-75 rounded-full h-75 mt-10"/>
       </div>
       <div>
         <p className="font-semibold text-white text-xl w-xl inline">{"I'm "}</p>
@@ -19,5 +21,5 @@ export default function Home(){
     {/* Mini Links Container */}
     <MiniLinkContainer/>
     <Calendar/>
-  </div>
+  </>);
 }

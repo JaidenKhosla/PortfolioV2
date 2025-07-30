@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FaHome, FaPhoneAlt } from 'react-icons/fa';
 import { FaNewspaper } from 'react-icons/fa6';
 import { RiComputerFill } from 'react-icons/ri';
+import { BsNewspaper } from "react-icons/bs";
 
 export default function Navbar(){
     return (
@@ -13,6 +14,7 @@ export default function Navbar(){
         <Button title="Home" path="/" icon={FaHome}/>
         <Button title="About" path="/about" icon={FaNewspaper}/>
         <Button title="Projects" path="/projects" icon={RiComputerFill}/>
+        <Button title="Blog" path="/blog" icon={BsNewspaper}/>
         <Button title="Contact" path="/contact" icon={FaPhoneAlt}/>
     </div>
  );
