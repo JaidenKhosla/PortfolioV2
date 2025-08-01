@@ -3,7 +3,7 @@ import MiniLinkContainer from "@/ui/minilink/MiniLinkContainer"
 import ImageSkeleton from "@/ui/image/ImageSkeleton"
 import Calendar from "@/ui/githubStats/Calendar"
 
-export default function Home(){
+export default async function Home(){
   return (
     <>
     <div className="self-center flex items-center gap-12">

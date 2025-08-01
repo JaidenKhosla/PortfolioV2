@@ -15,17 +15,20 @@
     "@supabase/supabase-js": "^2.53.0",
     "@types/mdx": "^2.0.13",
     "next": "15.4.4",
+    "nodemailer": "^7.0.5",
     "postgres": "^3.4.7",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-github-calendar": "^4.5.9",
     "react-icons": "^5.5.0",
-    "supabase": "^2.31.8"
+    "supabase": "^2.31.8",
+    "zod": "^4.0.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
