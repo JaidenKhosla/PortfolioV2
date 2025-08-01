@@ -4,7 +4,7 @@
 :root, html {
   --background: #ffffff;
   --foreground: #171717;
-  font-size: clamp(6px, 1vw, 18px);
+  font-size: clamp(4px, 1vw, 18px);
 }
 
 html {
@@ -17,6 +17,7 @@ html {
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-code-black: rgb(40, 42, 54)
 }
 
 

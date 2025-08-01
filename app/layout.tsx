@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Work_Sans } from "next/font/google";
 import "@/app/globals.css";
 import Navbar from "@/ui/navbar/Navbar";
-
-const workSans = Work_Sans({subsets: ["latin"]})
+import { workSans } from "@/ui/fonts";
 
 export const metadata: Metadata = {
   title: "Jaiden Khosla",

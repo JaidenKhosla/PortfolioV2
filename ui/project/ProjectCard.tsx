@@ -1,26 +1,11 @@
 
-import { IconType } from "react-icons";
-import { DiJavascript, DiJava, DiPython, DiCss3} from "react-icons/di";
-import { SiTailwindcss, SiTypescript, SiHtml5, SiReact, SiNextdotjs, SiGodotengine, SiGithub } from "react-icons/si";
 // import Image from "next/image";
 // import { redirect } from "next/navigation";
 import ImageSkeleton from "../image/ImageSkeleton";
 import Link from "next/link";
 import serveImage from "@/lib/database";
 
-const tagsToIcon: { [ tag: string ] : [IconType, string]} = {
-    "JS" : [DiJavascript, "bg-yellow-400"],
-    "Java" : [DiJava, "bg-orange-500"],
-    "Python" : [DiPython, "bg-sky-600"],
-    "CSS" : [DiCss3, "bg-violet-600"],
-    "Tailwind" : [SiTailwindcss, "bg-cyan-300"],
-    "TS" : [SiTypescript, "bg-blue-500"],
-    "HTML" : [SiHtml5, "bg-red-500"],
-    "React" : [SiReact, "bg-sky-400"],
-    "Next" : [SiNextdotjs, "bg-neutral-950"],
-    "Godot" : [SiGodotengine, "bg-cyan-700"],
-    "Github" : [SiGithub, "bg-slate-800"]
-}
+import Tag from "@/ui/tags";
 
 
 interface ProjectCardProps {
@@ -46,11 +31,3 @@ export default async function ProjectCard({
     </Link>
 }
 
-export function Tag({ title }: { title: string }){
-    const [ Icon, color ] = tagsToIcon[title]!
-    return (
-    <div className={`${color} flex gap-x-0.5 items-center p-0.5 px-1.5 w-fit rounded-lg`}>
-        <Icon size={"1rem"}/>
-        <p>{title}</p>
-    </div>);
-}

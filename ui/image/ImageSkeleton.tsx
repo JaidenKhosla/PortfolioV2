@@ -15,26 +15,30 @@ export default function ImageSkeleton( props : SkeletonProps){
 
     const [ isLoading, setIsLoading ] = useState<boolean>(true);
     const [ servedImage, setServedImage ] = useState<string|StaticImport>("");
+    try{
+        useEffect(()=>{
 
-    useEffect(()=>{
-
-        if(!(props.promise || props.src))
-            throw new Error("For Image Skeleton you must have defined a src or promise!")
-    
-        if(props.promise)
-        {
-            props.promise.then(res => {
-                setServedImage(res);
-            })
-        }
-        else
-        {
-            setServedImage(props.src!);
-        }
-    }, [])
-
-
-    return (<div className={`${isLoading ? `${props.className} ${loadingAnimation} bg-gray-500 relative flex justify-center items-center before-content-['']` : ""}`}>
-       { servedImage != "" &&  <Image {...props} className={`${props.className} relative ${isLoading ? "opacity-0" : ""}`} onLoadingComplete={()=>setIsLoading(false)} src={servedImage}/>}
-    </div>);
+            if(!(props.promise || props.src))
+                throw new Error("For Image Skeleton you must have defined a src or promise!")
+        
+            if(props.promise)
+            {
+                props.promise.then(res => {
+                    if(res!="not-found")
+                        setServedImage(res);
+                })
+            }
+            else
+            {
+                setServedImage(props.src!);
+            }
+        }, [])
+      
+        return (<div className={`${isLoading ? `${props.className} ${loadingAnimation} bg-gray-500 relative flex justify-center items-center before-content-['']` : ""}`}>
+        { servedImage != "" && servedImage != "not-found"  &&  <Image {...props} className={`${props.className} relative ${isLoading ? "opacity-0" : ""}`} onLoadingComplete={()=>setIsLoading(false)} src={servedImage}/>}
+        </div>);
+    }
+    catch{
+        return <div className={`${props.className} ${loadingAnimation} bg-gray-500 relative flex justify-center items-center before-content-['']`}/>
+    }
 }

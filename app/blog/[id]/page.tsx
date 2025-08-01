@@ -1,7 +1,7 @@
 "use client"
 
 import { notFound, usePathname } from "next/navigation"
-import BlogPost from "../../../ui/blog/BlogPost";
+import BlogPost from "@/ui/blog/BlogPost";
 
 export default function Page(){
   
@@ -9,7 +9,7 @@ export default function Page(){
 
     if(blogID == "") notFound();
 
-    return <div className="text-white text-4xl">
+    return <div className="text-white text-4xl flex justify-center">
       <BlogPost id={blogID}/>
     </div>
 }
