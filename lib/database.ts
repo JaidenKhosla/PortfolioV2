@@ -5,6 +5,8 @@ import postgres from "postgres";
 import { createClient } from "@supabase/supabase-js";
 
 const URL_EXPIRATION = 60; //in seconds
+
+
 const fallbackImage = process.env.FALLBACK_IMAGE!;
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
