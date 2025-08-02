@@ -8,7 +8,7 @@ export default async function Home(){
     <>
     <div className="self-center flex items-center gap-12">
       <div className="flex flex-col items-center gap-y-6">
-        <ImageSkeleton src="/images/JaidenKhosla.png" width={1932} height={3013} alt="Jaiden Khosla"  draggable={false} className=" object-cover w-75 rounded-full h-75 mt-10"/>
+        <ImageSkeleton priority={true} src="/images/JaidenKhosla.png" width={1932} height={3013} alt="Jaiden Khosla"  draggable={false} className=" object-cover w-75 rounded-full h-75 mt-10"/>
       </div>
       <div>
         <p className="font-semibold text-white text-xl w-xl inline">{"I'm "}</p>

@@ -12,7 +12,7 @@ interface CalendarBtnProps {
 
 
 export default function CalendarBtn({year, setState, selectedYear} : CalendarBtnProps){
-    return <button className={`transition ${year!=selectedYear ? "hover:translate-y-[-0.25rem]" : ""} hover:text-gray-300 cursor-pointer text-xl font-light ${year==selectedYear ? "translate-y-[0.3rem]" : ""}`} onClick={()=>setState(year)}>{year}</button>
+    return <button className={`transition ${year!=selectedYear ? "hover:translate-y-[-0.25rem]" : ""} hover:text-gray-300 cursor-pointer text-6xl md:text-2xl font-light ${year==selectedYear ? "translate-y-[0.3rem]" : ""}`} onClick={()=>setState(year)}>{year}</button>
 }
 
 export function getAllBtnsFromYear(year: number, setState: setState, selectedYear: selectedYear){

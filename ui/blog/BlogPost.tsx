@@ -42,7 +42,7 @@ export default function BlogPost({ id }: BlogPostProps){
             <p className="font-semibold text-2xl">Written by {blogPostInfo?.author || ""}</p>
             <p className="font-light text-2xl">{new Date(blogPostInfo?.created_at || -1).toLocaleString()}</p>
             <div className="flex gap-x-3.5 my-3">
-                {blogPostInfo.tags.map(tag => <Tag title={tag}/>)}
+                {blogPostInfo.tags.map(tag => <Tag title={tag} key={tag}/>)}
             </div>
         </div>
         <div>
