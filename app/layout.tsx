@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${workSans.className} antialiased flex self-center`}
+        className={`${workSans.className} antialiased flex self-center flex-col md:flex-row`}
         >
         <Navbar/>
         <div className="page">

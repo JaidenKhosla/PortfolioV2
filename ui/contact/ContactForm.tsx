@@ -29,10 +29,10 @@ export default function ContactForm(){
     const [ state, action ] = useActionState(sendToMe, initialState);
 
     return (
-    <div className="text-white bg-cyan-950/30 w-fit p-8 rounded-4xl self-center justify-self-center">
-        <h1 className="font-bold text-[2rem] flex-wrap">Contact Form</h1>
-        <form className="w-fit flex flex-col gap-y-3" action={action}>
-        <p className="text-wrap font-light text-xl w-100 py-3.5">Please feel free to reach out out! I will try to reply back as soon as possible!</p>
+    <div className="text-white bg-cyan-950/30 w-fit p-8 rounded-4xl self-center justify-self-center flex flex-col items-center">
+        <h1>Contact Form</h1>
+        <form className="w-fit flex flex-col gap-y-3 items-center" action={action}>
+        <p className="text-wrap font-light w-100 py-3.5 text-center">Please feel free to reach out out! I will try to reply back as soon as possible!</p>
         <div className="border-white border-[0.1rem] w-full"></div>
             <div className="flex gap-x-4">
                 { Object.keys(formLinks).map(name=>{
@@ -48,15 +48,15 @@ export default function ContactForm(){
             </div>
             <input className={inputStyle} type="text" placeholder="Your Email" name="email" aria-errormessage="emailError"/>
             <div id="emailError">
-                {state.errors?.email && state.errors.email.map(err => <p className="text-red-500 text-sm" key={err}>{err}</p>)}
+                {state.errors?.email && state.errors.email.map(err => <p className="text-red-500 text-lg md:text-sm" key={err}>{err}</p>)}
             </div>
             <textarea className={`${inputStyle} h-48`} placeholder="Your Message" name="message" aria-errormessage="messageError"></textarea>
             <div id="messageError">
-                {state.errors?.message && state.errors.message.map(err => <p className="text-red-500 text-sm" key={err}>{err}</p>)}
+                {state.errors?.message && state.errors.message.map(err => <p className="text-red-500 text-lg md:text-sm" key={err}>{err}</p>)}
             </div>
-            <button className="w-full p-3 border-[0.1rem] text-white rounded-xl transition-all hover:text-lg hover:font-semibold h-min cursor-pointer" aria-errormessage="message">Send Message</button>
+            <button className="w-full p-3 border-[0.1rem] text-white rounded-xl transition-all hover:scale-105 hover:font-semibold h-min cursor-pointer" aria-errormessage="message">Send Message</button>
             <div className="message">
-                { state.msg && <p className={`text-sm ${state.errors ? "text-red-500" : "text-green-500"}`}>{state.msg}</p>}
+                { state.msg && <p className={`text-lg md:text-sm ${state.errors ? "text-red-500" : "text-green-500"}`}>{state.msg}</p>}
             </div>
         </form>
     </div>

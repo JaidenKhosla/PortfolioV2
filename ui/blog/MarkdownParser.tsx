@@ -28,13 +28,12 @@ export default function MarkdownParser({ children, uuid }: MarkdownParserProps){
                         const [ isCopying, setIsCopying ] = useState(false);
                         
                         const iconProps = {
-                            size:"1.5rem",
-                            className: `mr-3 cursor-pointer hover:text-gray-300 transition ${isCopying ? "text-green-500 hover:text-green-800" : ""}`,
+                            className: `mr-3 cursor-pointer hover:text-gray-300 transition text-5xl ${isCopying ? "text-green-500 hover:text-green-800" : ""}`,
                             onClick: ()=>{navigator.clipboard.writeText(text.join("\n")); setIsCopying(true); setTimeout(()=>setIsCopying(false), 3000)}
                         }
 
-                        return <div className="w-[48rem] py-5">
-                            <div className={`bg-slate-700 p-2 font-light text-xl ${workSans.className} rounded-t-lg flex items-center justify-between`}>
+                        return <div className="md:w-[48rem] w-[72rem] py-5">
+                            <div className={`bg-slate-700 p-2 pl-5 font-light text-xl ${workSans.className} rounded-t-lg flex items-center justify-between`}>
                                 <p>{fileName}</p>
                                 { isCopying ? <IoMdCheckmark {...iconProps}/> : <IoIosCopy {...iconProps}/>}
                             </div>
@@ -44,25 +43,25 @@ export default function MarkdownParser({ children, uuid }: MarkdownParserProps){
                     </div>
                     },
                     h1({children, ...props}: any){
-                        return <h1 className="font-extrabold text-5xl pb-5 ">{children}</h1>
+                        return <h1>{children}</h1>
                     },
 
                     h2({children, ...props}: any){
-                        return <h2 className="font-bold text-4xl">{children}</h2>
+                        return <h2>{children}</h2>
                     },
 
                     h3({children, ...props}: any){
-                        return <h2 className="font-semibold text-3xl">{children}</h2>
+                        return <h3>{children}</h3>
                     },
                     
                     p({children, ...props}: any){
                         if(Children.toArray(children).filter(e=>e instanceof HTMLDivElement))
                             return children;
-                        return <p className="font-medium text-lg">{children}</p>
+                        return <p>{children}</p>
                     },
 
                     a({children, ...props}: any){
-                        return <a className="font-medium text-lg text-blue-500 hover:text-blue-200 transition-all cursor-pointer">{children}</a>
+                        return <a>{children}</a>
                     },
 
                     ul({children, ...props}: any){

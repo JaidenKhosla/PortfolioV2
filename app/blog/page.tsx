@@ -5,7 +5,7 @@ export default async function BlogPage(){
     
     const blogPostInfos = await fetchAllPostInfos();
 
-    return <div>
+    return <div className="">
         {blogPostInfos.map(blogInfo => <PostOverview {...blogInfo} key={blogInfo.id}/>)}
     </div>
 }

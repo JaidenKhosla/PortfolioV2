@@ -1,6 +1,6 @@
 import Project from "@/ui/project/ProjectCard";
 
-import serveImage, { fetchAllProjects } from "@/lib/database";
+import { fetchAllProjects } from "@/lib/database";
 
 export default async function Projects() {
 

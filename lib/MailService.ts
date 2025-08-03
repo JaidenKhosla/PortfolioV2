@@ -1,6 +1,5 @@
 "use server"
 
-import { NextResponse, NextRequest } from "next/server";
 import nodeMailer from "nodemailer"; 
 import * as zod from "zod";
 
@@ -43,12 +42,13 @@ export default async function sendToMe(prevState: returnSchema, formData: FormDa
 
     const parsedFormData = parsed.data;
 
-    const info = await transporter.sendMail({
+    await transporter.sendMail({
         from: `Jaiden Khosla's Bot <${process.env.SMTP_USERNAME!}>`,
         to: `jaiden@khosla.io`,
         subject: `Message from ${parsedFormData.name}`,
         text: `REPLY EMAIL: ${parsedFormData.email}\n\n\n${parsedFormData.message}`
     });
+
 
     return {
         msg: "Email Sent Succesfully!"

@@ -21,7 +21,7 @@ export function getAllBtnsFromYear(year: number, setState: setState, selectedYea
     const amtOfYears = currYear-year;
 
 
-    return <div className="flex gap-x-3  my-2 py-5 pb-0 border-t-indigo-100/30 border-t-[1px]">
+    return <div className="flex gap-x-3  my-2 py-5 pb-0 border-t-indigo-100/30 border-t-[1px] justify-center md:justify-start">
         {Array.from({ length: amtOfYears+1}).map((_, idx)=>{
             return <CalendarBtn year={year+idx} setState={setState} selectedYear={selectedYear}  key={year+idx}/>;
         })}

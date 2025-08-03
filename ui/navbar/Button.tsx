@@ -7,10 +7,12 @@ interface ButtonProps {
     title: string;
     path: string;
     icon?: IconType;
+
+    onClick?: ()=>void
 }
 
-export default function Button({title, path, icon: Icon}: ButtonProps){
-    return <Link className="px-5 py-2 hover:pl-8 text-white font-semibold text-xl transition-all cursor-pointer flex items-center gap-x-3" href={path} prefetch={true}>
-        {Icon && <Icon className="text-white text-5xl" size={"2rem"}/>}{title}
+export default function Button({title, path, icon: Icon, onClick}: ButtonProps){
+    return <Link className="px-5 py-2 hover:pl-8 text-white font-semibold text-6xl md:text-xl transition-all cursor-pointer flex items-center gap-x-3 select-none" href={path} prefetch={true} onClick={onClick}>
+        {Icon && <Icon className="text-white text-5xl md:text-2xl"/>}{title}
     </Link>
 }

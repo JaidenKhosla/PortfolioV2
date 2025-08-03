@@ -54,7 +54,7 @@ export default async function createBlogPost(prevState: blogCreationSchema, form
 
     const { title, description, author, tags, content, uuid } = parsedData.data;
 
-    const data = await sql`INSERT INTO blog (title, description, author, tags, uuid) VALUES (${title}, ${description}, ${author}, ${tags.split(",")}, ${uuid});`
+    await sql`INSERT INTO blog (title, description, author, tags, uuid) VALUES (${title}, ${description}, ${author}, ${tags.split(",")}, ${uuid});`
 
    const buffer = Buffer.from(content, "utf-8");
 
