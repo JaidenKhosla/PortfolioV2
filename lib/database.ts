@@ -76,6 +76,7 @@ export interface BlogInfo {
     description: string;
     author: string;
     tags: string[];
+    uuid: string,
 }
 
 export async function fetchBlogInfo(id: string){
@@ -100,3 +101,11 @@ export async function fetchAllPostInfos(){
     const allPostInfos = await sql<BlogInfo[]>`SELECT * FROM blog`;
     return allPostInfos;
 }
+
+export async function uploadFile(file: File, blogUuid?: string){
+    const fileName = blogUuid ? `${file.name}-${blogUuid}` : file.name;
+    supabase.storage.from("blog-images").upload(fileName, file, {
+        upsert: true
+    })
+}
+

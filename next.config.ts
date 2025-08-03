@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
         hostname: process.env.NEXT_PUBLIC_SUPABASE_URL!.replace("https://","")!
       }
     ]
+  },
+  experimental : {
+    serverActions: {
+      bodySizeLimit: "10mb"
+    }
   }
 };
 

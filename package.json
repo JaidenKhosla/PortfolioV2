@@ -23,6 +23,7 @@
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
     "supabase": "^2.31.8",
+    "uuid": "^11.1.0",
     "zod": "^4.0.14"
   },
   "devDependencies": {

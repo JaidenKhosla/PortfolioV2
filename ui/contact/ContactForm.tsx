@@ -5,7 +5,6 @@ import { IconType } from "react-icons";
 import { BsInstagram, BsLinkedin } from "react-icons/bs";
 
 import sendToMe, { returnSchema } from "@/lib/MailService";
-import { useFormState } from "react-dom";
 import { useActionState } from "react";
 
 interface link {

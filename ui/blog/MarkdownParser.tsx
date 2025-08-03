@@ -1,19 +1,23 @@
 "use-client"
 
 import ReactMarkdown from "react-markdown";
-import { useState } from "react";
+import { useState, Children } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { IoIosCopy, IoMdCheckmark } from "react-icons/io";
 import LoadingPage from "@/app/loading";
 //Import Nunito bc ReactMarkdown changes the font
 import { workSans } from "@/ui/fonts";
+import Image from "next/image";
+import ImageSkeleton from "../image/ImageSkeleton";
+import serveFile from "../../lib/database";
 
 interface MarkdownParserProps {
     children?: string;
+    uuid?: string
 }
 
-export default function MarkdownParser({ children }: MarkdownParserProps){
+export default function MarkdownParser({ children, uuid }: MarkdownParserProps){
     return ( 
         <div className="flex flex-col items-start pb-12">
             <ReactMarkdown 
@@ -52,6 +56,8 @@ export default function MarkdownParser({ children }: MarkdownParserProps){
                     },
                     
                     p({children, ...props}: any){
+                        if(Children.toArray(children).filter(e=>e instanceof HTMLDivElement))
+                            return children;
                         return <p className="font-medium text-lg">{children}</p>
                     },
 
@@ -61,6 +67,10 @@ export default function MarkdownParser({ children }: MarkdownParserProps){
 
                     ul({children, ...props}: any){
                         return <ul className="font-medium text-lg list-disc pl-4">{children}</ul>
+                    },
+                    
+                    img({children, ...props}: any){
+                        return <ImageSkeleton width={1600} height={900} alt={`${props.src}`} promise={serveFile("blog-images", `${uuid ? `${props.src}-${uuid}` : `${props.src}`}`)} className="w-64 rounded-2xl"/>
                     }
 
                 }}>{children}</ReactMarkdown>

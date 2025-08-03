@@ -10,6 +10,6 @@ export default function Page(){
     if(blogID == "") notFound();
 
     return <div className="text-white text-4xl flex justify-center">
-      <BlogPost id={blogID}/>
+      <BlogPost id={blogID.replace("%20"," ")}/>
     </div>
 }
