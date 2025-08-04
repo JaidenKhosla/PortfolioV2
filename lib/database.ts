@@ -3,7 +3,7 @@
 import { Timestamp } from "next/dist/server/lib/cache-handlers/types";
 import postgres from "postgres";
 import { createClient } from "@supabase/supabase-js";
-import { compareSync } from "bcrypt";
+
 
 const URL_EXPIRATION = 60; //in seconds
 
