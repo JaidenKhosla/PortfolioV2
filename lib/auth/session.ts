@@ -45,6 +45,15 @@ export default async function createUserSession(user: UserSession, cookies: Pick
     setCookie(sessionId, cookies)
 }
 
+export async function removeUserFromSesssion(cookies: Pick<Cookies, "get" | "delete">){
+    const sessionId = cookies.get(COOKIE_SESSION_ID)?.value;
+
+    if(sessionId==null) return null;
+
+    await sql`DELETE FROM sessions WHERE "sessionId"=${sessionId}`;
+    cookies.delete(COOKIE_SESSION_ID);
+}
+
 export function setCookie(sessionId: string, cookies: Pick<Cookies, "set">) {
     cookies.set(COOKIE_SESSION_ID, sessionId, {
         secure: true,

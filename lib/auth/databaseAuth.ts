@@ -3,9 +3,10 @@
 import postgres from "postgres";
 import * as zod from "zod"
 import { hashPassword, generateSalt, comparePasswords } from "./passwordHasher";
-import createUserSession from "./session";
+import createUserSession, { removeUserFromSesssion } from "./session";
 import type { UserSession } from "./session";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
@@ -24,7 +25,7 @@ export type userMessageSchema = {
 }
 
 
-export async function register(prevState: userMessageSchema, unsafeData: FormData): Promise<userMessageSchema>{
+export async function register(prevState: userMessageSchema, unsafeData: FormData, alterUserSession?: boolean): Promise<userMessageSchema>{
     const {success, data, error} = UserSchema.safeParse({
         email: unsafeData.get("email"),
         password: unsafeData.get("password")
@@ -40,19 +41,20 @@ export async function register(prevState: userMessageSchema, unsafeData: FormDat
         const salt = generateSalt();
         const hashedPassword = await hashPassword(data.password, salt);
     
-        const user = await sql<UserSession[]>`INSERT INTO users (email, password, salt) VALUES (${data.email}, ${hashedPassword}, ${salt}) RETURNING id, role`;
+        const user = await sql<UserSession[]>`INSERT INTO users (email, password, salt) VALUES (${data.email}, ${hashedPassword}, ${salt}) RETURNING "userId", role`;
         
         if(user == null) return {message: "Unable to register account. User NULL!"}
-        await createUserSession(user[0], await cookies())
-        return {message: ""}
+        if(alterUserSession) await createUserSession(user[0], await cookies())
+        redirect("/dashboard");
     }
-    catch{
-        return {message: `Unable to register account. Error Occurred!`};
+    catch(error){
+        throw error;
+        return {message: `Unable to register account ${error}`};
     }
 }
 
 export type DatabaseUser = {
-    id: number,
+    userId: number,
     email: string,
     password: string,
     salt: string,
@@ -79,7 +81,13 @@ export async function signIn(prevState: userMessageSchema, unsafeData: FormData)
 
     if(!isCorrectPassword) return { message: "Unable to log you in."}
 
-    await createUserSession({ userId: user[0].id.toString(), role: user[0].role }, await cookies());
+    await createUserSession({ userId: user[0].userId.toString(), role: user[0].role }, await cookies());
 
-    return {}
+    redirect("/dashboard")
+    return {message: "Logging you in."}
+}
+
+export async function logOut(){
+    await removeUserFromSesssion(await cookies())
+    redirect("/")
 }

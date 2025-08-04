@@ -71,7 +71,7 @@ body {
   }
 
 div {
-  @apply font-medium md:text-2xl text-4xl text-white;
+  @apply  font-medium md:text-xl text-4xl text-white;
 }
 
 }
