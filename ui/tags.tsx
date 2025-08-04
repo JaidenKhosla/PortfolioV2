@@ -24,8 +24,8 @@ const tagsToIcon: { [ tag: string ] : [IconType, string]} = {
 export default function Tag({ title }: { title: string }){
     const [ Icon, color ] = tagsToIcon[title]!
     return (
-    <div className={`${color} flex gap-x-1 items-center p-0.5 px-1.5 w-fit rounded-lg`}>
-        <Icon className="text-3xl md:text-xl"/>
-        <p className="text-2xl md:text-xl">{title}</p>
+    <div className={`${color} flex gap-x-1 items-center p-2 md:p-0.5 md:px-1.5 w-fit rounded-lg`}>
+        <Icon className="text-5xl md:text-xl"/>
+        <p className="text-4xl md:text-xl">{title}</p>
     </div>);
 }

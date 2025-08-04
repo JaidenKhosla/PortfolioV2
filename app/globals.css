@@ -41,7 +41,7 @@ body {
   .page {
     background: #1B1E2E;
     background: linear-gradient(145deg, rgba(27, 30, 46, 1) 0%, rgba(27, 30, 46, 1) 0%, rgba(27, 30, 46, 1) 0%, rgba(75, 90, 179, 1) 64%, rgba(22, 66, 120, 1) 100%);
-    @apply h-min min-h-screen w-screen pt-10 pl-10 flex flex-col items-center text-center md:block md:text-start;
+    @apply h-min min-h-screen w-screen pt-10 md:pl-10 flex flex-col items-center text-center md:block md:text-start;
   }
   
   @keyframes shimmer {

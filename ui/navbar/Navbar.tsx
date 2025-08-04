@@ -28,7 +28,7 @@ export default function Navbar(){
             onClick={()=>setVisible(e=>!e)} 
             />
         </div>
-        <div className={`${useVisible ? "opacity-100 visible": "opacity-0 invisible"}  transition-all flex flex-col justify-start pt-32 md:pt-0 items-center absolute -z-10 top-32 md:top-0 w-screen h-screen bg-slate-800/75  md:bg-transparent md:h-fit md:w-fit md:relative md:block md:opacity-100 md:visible`}>
+        <div className={`${useVisible ? "opacity-100 visible": "opacity-0 invisible"}  transition-all flex flex-col justify-start pt-32 md:pt-0 items-center absolute -z-10 top-32 md:top-0 w-screen h-screen bg-slate-800/75  md:bg-transparent md:h-fit md:w-fit md:relative md:block md:opacity-100 md:visible gap-y-30`}>
             <Button title="Home" path="/" icon={FaHome} onClick={closeFunc}/>
             <Button title="About" path="/about" icon={FaNewspaper} onClick={closeFunc}/>
             <Button title="Projects" path="/projects" icon={RiComputerFill} onClick={closeFunc}/>
