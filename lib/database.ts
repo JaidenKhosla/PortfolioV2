@@ -6,6 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 
 
 const URL_EXPIRATION = 60; //in seconds
+const BUFFER = 5;
 
 
 const fallbackImage = process.env.FALLBACK_IMAGE!;
@@ -24,7 +25,7 @@ export default async function serveFile(bucketName:string, filePath: string) {
     try{
 
         const key = `${bucketName} ${filePath}`
-        const currDate = Date.now();
+        const currDate = Math.floor(Date.now()/1000);
     
         if (cache.has(key))
         {
@@ -41,7 +42,7 @@ export default async function serveFile(bucketName:string, filePath: string) {
     
         cache.set(key, {
             link: signedUrl,
-            expiresAt: currDate + (URL_EXPIRATION * 1000)
+            expiresAt: currDate + (URL_EXPIRATION * 1000) - BUFFER
         })
     
         return signedUrl;
