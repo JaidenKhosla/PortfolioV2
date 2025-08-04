@@ -6,6 +6,9 @@ import Fade from "@/ui/fadeIn/Fade";
 export const metadata: Metadata = {
   title: "Jaiden Khosla",
   description: "Jaiden Khosla's Portfolio",
+  icons: {
+    icon: "/images/computer.png"
+  }
 };
 
 export default function RootLayout({
