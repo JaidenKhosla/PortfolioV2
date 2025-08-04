@@ -35,7 +35,7 @@ export default function ImageSkeleton( props : SkeletonProps){
         }, [])
       
         return (<div className={`${isLoading ? `${props.className} ${loadingAnimation} bg-gray-500 relative flex justify-center items-center before-content-['']` : ""}`}>
-        { servedImage != "" && servedImage != "not-found"  &&  <Image {...props} className={`${props.className} relative ${isLoading ? "opacity-0" : ""}`} onLoad={()=>setIsLoading(false)} src={servedImage} unoptimized={true}/>}
+        { servedImage != "" && servedImage != "not-found"  &&  <Image {...props} className={`${props.className} relative ${isLoading ? "opacity-0" : ""}`} onLoad={()=>setIsLoading(false)} src={servedImage}/>}
         </div>);
     }
     catch{
