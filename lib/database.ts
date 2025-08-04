@@ -35,12 +35,7 @@ export default async function serveFile(bucketName:string, filePath: string) {
 
     if(error) return fallbackImage;
     
-    cache.set(key, {
-        link: data?.signedUrl,
-        date: Date.now()
-    })
-
-    return cache.get(key)!.link;
+    return data.signedUrl;
 }
 
 interface Project {
