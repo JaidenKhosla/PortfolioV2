@@ -19,7 +19,7 @@ export default function RootLayout({
         className={`${workSans.className} antialiased flex self-center flex-col md:flex-row`}
         >
         <Navbar/>
-        <div className="page h-[340rem]">
+        <div className="page">
           {children}
         </div>
       </body>

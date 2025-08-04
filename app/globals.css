@@ -4,7 +4,7 @@
 :root, html {
   --background: #ffffff;
   --foreground: #171717;
-  font-size: clamp(4px, 1vw, 18px);
+  font-size: clamp(3.6px, 0.9vw, 16.2px);
 }
 
 html {
