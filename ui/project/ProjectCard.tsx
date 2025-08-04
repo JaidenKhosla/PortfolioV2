@@ -1,7 +1,7 @@
 
 // import Image from "next/image";
 // import { redirect } from "next/navigation";
-import ImageSkeleton from "../image/ImageSkeleton";
+import ImageSkeleton from "@/ui/image/ImageSkeleton";
 import Link from "next/link";
 import serveImage from "@/lib/database";
 

@@ -2,7 +2,7 @@
 import { signIn } from "@/lib/auth/databaseAuth";;
 import { useActionState } from "react";
 import type { userMessageSchema } from "@/lib/auth/databaseAuth";
-import { getCurrentUser } from "../../lib/auth/currentUser";
+import { getCurrentUser } from "@/lib/auth/currentUser";
 import Form from "@/ui/form";
 const inputStyle = ""
 

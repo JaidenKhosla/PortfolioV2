@@ -1,4 +1,4 @@
-import { getUserFromSesssion } from "../../../lib/auth/session";
+import { getUserFromSesssion } from "@/lib/auth/session";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation"
 import RegisterForm from "@/ui/registerTable/Register";

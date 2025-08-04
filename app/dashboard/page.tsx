@@ -1,8 +1,8 @@
 import {redirect} from "next/navigation"
-import { getUserFromSesssion } from "../../lib/auth/session"
+import { getUserFromSesssion } from "@/lib/auth/session"
 import { cookies } from "next/headers"
 import Link from "next/link"
-import { logOut } from "../../lib/auth/databaseAuth"
+import { logOut } from "@/lib/auth/databaseAuth"
 
 export default async function DashboardPage() {
     const user = await getUserFromSesssion(await cookies())

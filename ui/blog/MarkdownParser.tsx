@@ -9,8 +9,8 @@ import LoadingPage from "@/app/loading";
 //Import Nunito bc ReactMarkdown changes the font
 import { workSans } from "@/ui/fonts";
 import Image from "next/image";
-import ImageSkeleton from "../image/ImageSkeleton";
-import serveFile from "../../lib/database";
+import ImageSkeleton from "@/ui/image/ImageSkeleton";
+import serveFile from "@/lib/database";
 
 interface MarkdownParserProps {
     children?: string;
