@@ -27,7 +27,7 @@ export default async function serveFile(bucketName:string, filePath: string) {
     if (cache.has(key))
     {
         const req = cache.get(key);
-        if(Date.now()-(req?.date!) < (URL_EXPIRATION - 10) * 1000)
+        if(Date.UTC(Date.now())-(req?.date!) < (URL_EXPIRATION - 10) * 1000)
             return req?.link!;
     }
 
@@ -37,7 +37,7 @@ export default async function serveFile(bucketName:string, filePath: string) {
     
     cache.set(key, {
         link: data?.signedUrl,
-        date: Date.now()
+        date: Date.UTC(Date.now())
     })
 
     return cache.get(key)!.link;
