@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Jaiden Khosla",
   description: "Jaiden Khosla's Portfolio",
   icons: {
-    icon: "/images/computer.png"
+    icon: "icon.png"
   }
 };
 
