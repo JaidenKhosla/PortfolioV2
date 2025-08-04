@@ -1,7 +1,8 @@
 import ContactForm from "@/ui/contact/ContactForm";
+import Fade from "@/ui/fadeIn/Fade";
 
 export default function Contact(){
-    return (<>
+    return (<Fade>
         <ContactForm/>
-    </>);
+    </Fade>);
 }

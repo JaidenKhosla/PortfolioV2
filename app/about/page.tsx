@@ -1,7 +1,9 @@
 import ImageSkeleton from "@/ui/image/ImageSkeleton"
+import Fade from "@/ui/fadeIn/Fade"
+
 export default function Page(){
     return <>
-     <div className="flex gap-x-10 items-center justify-center flex-col md:flex-row gap-y-10 md:flex-row-reverse">
+     <Fade className="flex gap-x-10 items-center justify-end flex-col gap-y-10 md:flex-row-reverse">
         <ImageSkeleton priority={true} src="/images/JaidenKhosla.png" width={1932} height={3013} alt="Jaiden Khosla"  draggable={false} className=" object-cover w-[50rem] h-[50rem] md:w-95 md:h-95 rounded-2xl mt-10"/>
         <div className="w-[50rem]">
             <h1>About Me</h1>
@@ -13,6 +15,6 @@ export default function Page(){
             <br/>
             <p className="font-bold">{`Feel free to reach out to me if needed.`}</p>
         </div>
-     </div>
+     </Fade>
     </>
 }

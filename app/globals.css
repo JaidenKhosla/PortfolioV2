@@ -70,9 +70,21 @@ body {
     @apply font-medium md:text-2xl text-4xl text-white w-full;
   }
 
-div {
-  @apply  font-medium md:text-xl text-4xl text-white;
+  div {
+    @apply  font-medium md:text-xl text-4xl text-white;
+  }
+
+  
 }
 
+
+.fadeIn {
+  transition: opacity 1s ease-out, transform 1.5s ease-out;
+  will-change: opacity, visibility;
+  @apply opacity-0 translate-y-[20vh] transition-all;
 }
 
+.fadeIn-visible {
+  transition: opacity 1s ease-out, transform 1.5s ease-out;
+  @apply transform-none opacity-100;
+}

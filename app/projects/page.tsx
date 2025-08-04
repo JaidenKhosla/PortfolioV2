@@ -1,12 +1,13 @@
 import Project from "@/ui/project/ProjectCard";
 
 import { fetchAllProjects } from "@/lib/database";
+import Fade from "@/ui/fadeIn/Fade";
 
 export default async function Projects() {
 
     const projects = await fetchAllProjects();
     
-    return (<>
+    return (<Fade>
         <h1>Projects</h1>
         <p className="ml-0.5 max-w-2xl text-base text-white leading-relaxed">{"Over the years, I've worked on many tiny projects (most are just little games I made to cure boredom). All of them are open source and on Github so feel free to check out the code. All of them are deployed through Github Pages."}</p>
         <div  className="py-20 flex gap-6 flex-wrap pr-5 max-w-2xl`">
@@ -16,5 +17,5 @@ export default async function Projects() {
             })
             }
         </div>
-    </>);
+    </Fade>);
 }

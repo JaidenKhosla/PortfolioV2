@@ -1,11 +1,13 @@
 import MiniLinkContainer from "@/ui/minilink/MiniLinkContainer"
 import ImageSkeleton from "@/ui/image/ImageSkeleton"
 import Calendar from "@/ui/githubStats/Calendar"
+import Fade from "@/ui/fadeIn/Fade";
+
 
 export default async function Home(){
   return (
     <>
-    <div className="flex gap-x-10 items-center flex-col md:flex-row gap-y-6">
+    <Fade className="flex gap-x-10 items-center flex-col md:flex-row gap-y-6">
       <div className="flex flex-col items-center gap-y-6">
         <ImageSkeleton priority={true} src="/images/JaidenKhosla.png" width={1932} height={3013} alt="Jaiden Khosla"  draggable={false} className=" object-cover w-[30rem] h-[30rem] md:w-75 md:h-75 rounded-full mt-10"/>
       </div>
@@ -15,7 +17,7 @@ export default async function Home(){
         <p className="font-semibold text-white w-xl pt-4">I have a deep passion for learning all things</p>
         <p className="font-extrabold text-white w-xl overflow-hidden whitespace-nowrap">Computer Science.</p>
       </div>
-    </div>
+    </Fade>
     {/* Mini Links Container */}
     <MiniLinkContainer/>
     <Calendar/>
