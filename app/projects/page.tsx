@@ -7,9 +7,9 @@ export default async function Projects() {
 
     const projects = await fetchAllProjects();
     
-    return (<Fade>
+    return (<Fade className="flex flex-col items-center md:items-start">
         <h1>Projects</h1>
-        <p className="ml-0.5 max-w-2xl text-base text-white leading-relaxed">{"Over the years, I've worked on many tiny projects (most are just little games I made to cure boredom). All of them are open source and on Github so feel free to check out the code. All of them are deployed through Github Pages."}</p>
+        <p className="ml-0.5 max-w-2xl text-4xl md:text-xl text-white leading-relaxed">{"Over the years, I've worked on many tiny projects (most are just little games I made to cure boredom). All of them are open source and on Github so feel free to check out the code. All of them are deployed through Github Pages."}</p>
         <div  className="py-20 flex gap-6 flex-wrap pr-5 max-w-2xl`">
             {
              projects.map(async (project)=>{
