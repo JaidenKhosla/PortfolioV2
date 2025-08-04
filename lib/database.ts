@@ -24,12 +24,12 @@ export default async function serveFile(bucketName:string, filePath: string) {
 
     const key = `${bucketName} ${filePath}`
     
-    if (cache.has(key))
-    {
-        const req = cache.get(key);
-        if(Date.now()-(req?.date!) < URL_EXPIRATION - 10 )
-            return req?.link!;
-    }
+    // if (cache.has(key))
+    // {
+    //     const req = cache.get(key);
+    //     if(Date.now()-(req?.date!) < URL_EXPIRATION - 10000 )
+    //         return req?.link!;
+    // }
 
     const { data, error } = await supabase.storage.from(bucketName)?.createSignedUrl(filePath, URL_EXPIRATION/1000);
 
