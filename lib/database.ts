@@ -14,12 +14,7 @@ const fallbackImage = process.env.FALLBACK_IMAGE!;
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 const supabase = createClient(process.env.SUPABASE_URL!,process.env.SUPABASE_SERVICE_ROLE_KEY!)
 
-interface Request {
-    link: string;
-    expiresAt: number;
-}
-
-const cache: Map<string, Request> = new Map<string, Request>();
+const cache: Map<string, string> = new Map<string, string>();
 
 export default async function serveFile(bucketName:string, filePath: string) {
     try{
@@ -30,22 +25,26 @@ export default async function serveFile(bucketName:string, filePath: string) {
         if (cache.has(key))
         {
             const req = cache.get(key);
-            if(req && req.expiresAt > currDate)
-                return req?.link!;
+            if(req)
+            return req;
         }
     
-        const { data, error } = await supabase.storage.from(bucketName).createSignedUrl(filePath, URL_EXPIRATION);
+        const bucket = await supabase.storage.from(bucketName);
+
+        const { error, data } = await bucket.exists(filePath);
     
-        if(error || !data.signedUrl) return fallbackImage;
+        if(error) return fallbackImage;
         
-        const signedUrl = data.signedUrl;
+        const url = bucket.getPublicUrl(filePath);
     
-        cache.set(key, {
-            link: signedUrl,
-            expiresAt: currDate + (URL_EXPIRATION * 1000) - BUFFER
-        })
-    
-        return signedUrl;
+        const unsafeURL = url.data.publicUrl;
+
+        const publicUrl = unsafeURL ? unsafeURL : fallbackImage;
+
+        cache.set(key, publicUrl)
+
+        return publicUrl;
+        
     }
     catch{
         return fallbackImage;
