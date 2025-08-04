@@ -5,7 +5,7 @@ import postgres from "postgres";
 import { createClient } from "@supabase/supabase-js";
 
 
-const URL_EXPIRATION = 60; //in seconds
+const URL_EXPIRATION = 60_000; //in milliseconds
 
 
 const fallbackImage = process.env.FALLBACK_IMAGE!;
@@ -31,7 +31,7 @@ export default async function serveFile(bucketName:string, filePath: string) {
             return req?.link!;
     }
 
-    const { data, error } = await supabase.storage.from(bucketName)?.createSignedUrl(filePath, URL_EXPIRATION);
+    const { data, error } = await supabase.storage.from(bucketName)?.createSignedUrl(filePath, URL_EXPIRATION/1000);
 
     if(error) return fallbackImage;
     
