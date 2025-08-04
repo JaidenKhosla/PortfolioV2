@@ -15,34 +15,40 @@ const supabase = createClient(process.env.SUPABASE_URL!,process.env.SUPABASE_SER
 
 interface Request {
     link: string;
-    date: number;
+    expiresAt: number;
 }
 
 const cache: Map<string, Request> = new Map<string, Request>();
 
 export default async function serveFile(bucketName:string, filePath: string) {
+    try{
 
-    const key = `${bucketName} ${filePath}`
+        const key = `${bucketName} ${filePath}`
+        const currDate = Date.now();
     
-    if (cache.has(key))
-    {
-        const req = cache.get(key);
-        if(Date.now()- req?.date! < (URL_EXPIRATION - 10) * 1000)
-            return req?.link!;
+        if (cache.has(key))
+        {
+            const req = cache.get(key);
+            if(req && req.expiresAt > currDate)
+                return req?.link!;
+        }
+    
+        const { data, error } = await supabase.storage.from(bucketName).createSignedUrl(filePath, URL_EXPIRATION);
+    
+        if(error || !data.signedUrl) return fallbackImage;
+        
+        const signedUrl = data.signedUrl;
+    
+        cache.set(key, {
+            link: signedUrl,
+            expiresAt: currDate + (URL_EXPIRATION * 1000)
+        })
+    
+        return signedUrl;
     }
-
-    const { data, error } = await supabase.storage.from(bucketName).createSignedUrl(filePath, URL_EXPIRATION);
-
-    if(error || !data.signedUrl) return fallbackImage;
-    
-    const signedUrl = data.signedUrl;
-
-    cache.set(key, {
-        link: signedUrl,
-        date: Date.now()
-    })
-
-    return signedUrl;
+    catch{
+        return fallbackImage;
+    }
 }
 
 interface Project {
