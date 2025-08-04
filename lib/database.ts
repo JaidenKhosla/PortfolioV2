@@ -27,20 +27,22 @@ export default async function serveFile(bucketName:string, filePath: string) {
     if (cache.has(key))
     {
         const req = cache.get(key);
-        if(Date.UTC(Date.now())-(req?.date!) < (URL_EXPIRATION - 10) * 1000)
+        if(Date.now()- req?.date! < (URL_EXPIRATION - 10) * 1000)
             return req?.link!;
     }
 
-    const { data, error } = await supabase.storage.from(bucketName)?.createSignedUrl(filePath, URL_EXPIRATION);
+    const { data, error } = await supabase.storage.from(bucketName).createSignedUrl(filePath, URL_EXPIRATION);
 
-    if(error) return fallbackImage;
+    if(error || !data.signedUrl) return fallbackImage;
     
+    const signedUrl = data.signedUrl;
+
     cache.set(key, {
-        link: data?.signedUrl,
-        date: Date.UTC(Date.now())
+        link: signedUrl,
+        date: Date.now()
     })
 
-    return cache.get(key)!.link;
+    return signedUrl;
 }
 
 interface Project {
